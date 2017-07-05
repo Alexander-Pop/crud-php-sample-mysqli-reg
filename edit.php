@@ -1,16 +1,14 @@
-<?php session_start(); ?>
-
 <?php
+session_start();
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 if(!isset($_SESSION['valid'])) {
 	header('Location: login.php');
 }
-?>
-
-<?php
 // including the database connection file
 include_once("connection.php");
 
-if(isset($_POST['update'])){	
+if(isset($_POST['update'])){
 	$id = $_POST['id'];
 	
 	$name = $_POST['name'];
@@ -37,6 +35,8 @@ if(isset($_POST['update'])){
 		
 		//redirectig to the display page. In our case, it is view.php
 		header("Location: view.php");
+		//exit(header("Location: view.php"));
+		//echo("<script>location.href = 'view.php';</script>");
 	}
 }
 ?>
@@ -62,7 +62,7 @@ while($res = mysqli_fetch_array($result)){
 		<a href="index.php">Home</a> | <a href="view.php">View Products</a> | <a href="logout.php">Logout</a>
 		<br/><br/>
 		
-		<form name="form1" method="post" action="edit.php">
+		<form name="form1" method="post">
 			<table border="0">
 				<tr> 
 					<td>Name</td>
